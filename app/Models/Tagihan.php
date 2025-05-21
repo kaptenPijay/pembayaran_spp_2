@@ -39,13 +39,13 @@ class Tagihan extends Model
     protected function totalPembayaran(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $this->pembayaran()->sum('jumlah_dibayar') //digunakan di tagihan index dan tagihan controller di bagian create tetapi harus menggunakan method get dulu agar menjadi collection
+            get: fn($value) => $this->pembayaran()->sum('jumlah_dibayar') //digunakan di tagihan index dan tagihan controller di bagian create tetapi harus menggunakan method get dulu agar menjadi collection
         );
     }
     protected function totalTagihan(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $this->tagihanDetails()->sum('jumlah_biaya') //digunakan di tagihan index dan tagihan controller di bagian create tetapi harus menggunakan method get dulu agar menjadi collection
+            get: fn($value) => $this->tagihanDetails()->sum('jumlah_biaya') //digunakan di tagihan index dan tagihan controller di bagian create tetapi harus menggunakan method get dulu agar menjadi collection
         );
     }
     public function siswa()
@@ -101,5 +101,9 @@ class Tagihan extends Model
     public function scopeWaliSiswa($tagihan)
     {
         return $tagihan->whereIn('siswa_id', Auth::user()->getAllSiswaId()); //model tagihan dimana siswa_id = wali yang login, lalu getAllSiswaId di model user $this->siswa->pluck('id')->toArray() artinya user yang login dan memiliki relasi ke siswa pilih masing masing id siswa nya yang memiliki wali_id = wali yang login. contoh kevin id = 1 di wali dan mancek memiliki wali_id =1 sebagai siswa singkatnya model tagihan dimana siswa_id = siswa yang memiliki wali_id sama dengan wali yang sedang login
+    }
+    public function getNomorTagihan()
+    {
+        return "SPP-" . $this->id;
     }
 }

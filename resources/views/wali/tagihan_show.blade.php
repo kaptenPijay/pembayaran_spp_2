@@ -52,7 +52,7 @@
                             <table class="">
                                 <tr>
                                     <td>No. Tagihan</td>
-                                    <td>: #SFS-{{ $tagihan->id }}</td>
+                                    <td>: {{ $tagihan->getNomorTagihan() }}</td>
                                 </tr>
                                 <tr>
                                     <td>Tanggal Tagihan</td>
@@ -100,6 +100,11 @@
                             </tr>
                         </tfoot>
                     </table>
+                    <div class="alert alert-secondary" role="alert">
+                        <h5>Pembayaran Otomatis</h5>
+                        <p style="color: black">Pembayaran Otomatis menggunakan Pihak ketiga, anda akan dikenakan biaya tambahan sebesar Rp. 4.000,00</p>
+                        
+                    </div>
                     <div class="alert alert-secondary" role="alert" style="color:black">
                         Pembayaran Bisa DI lakukan Dengan Cara Langsung Ke Operator Sekolah Atau Di transfer Melalui Rekening Milik Sekolah Dibawah Ini. <br>
                         <u><i>Jangan Melakukan Transfer Ke Rekening Selain Dari Rekening Dibawah Ini.</i></u>
