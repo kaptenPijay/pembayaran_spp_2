@@ -280,7 +280,6 @@
                         <ul class="list-group list-group-flush">
                             @foreach (auth()->user()->unreadNotifications as $notification)
                           <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                            <a href="{{ url($notification->data['url'].'?id='. $notification->id ) }}">
                             <div class="d-flex">
                               <div class="flex-grow-1">
                                 <h6 class="mb-1">{{ $notification->data['title'] }}</h6>
@@ -292,7 +291,6 @@
                                 <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
                               </div>
                             </div>
-                            </a>
                           </li>
                           @endforeach
                         </ul>
