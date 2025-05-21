@@ -131,11 +131,15 @@
                                 </tr>
                                 <tr>
                                     <td>Bukti Pembayaran</td>
-                                    <td>:
-                                        <a href="javascript:void[0]"
-                                        onclick="popupCenter({url: '{{ Storage::url($model->bukti_bayar) }}', title: 'Bukti Pembayaran', w: 900, h: 700});  ">
-                                        Lihat Bukti Bayar
+                                        @if($model->metode_pembayaran == 'manual')
+                                        <td>: METODE PEMBAYARAN MANUAL / VIRTUAL ACCOUNT TANPA BUKTI BAYAR</td>
+                                        @else
+                                        <td>:
+                                            <a href="javascript:void[0]"
+                                            onclick="popupCenter({url: '{{ Storage::url($model->bukti_bayar) }}', title: 'Bukti Pembayaran', w: 900, h: 700});  ">
+                                            Lihat Bukti Bayar
                                         </a>
+                                        @endif
                                     </td>
                                     {{-- atribut title dan url emang bawaan dari popupcenter nya --}}
                                 </tr>

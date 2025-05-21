@@ -1,5 +1,33 @@
 @extends('layouts.app_sneat_wali')
+@section('js')
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#pay-button").click(function (e) {
+                var orderId = $("#order_id").val();
+                var total = $("#total").val();
+                var url = "/walimurid/pembayaranmidtrans?tagihan_id={{ $tagihan->id }}";
+                $.getJSON(url,
+                    function (data, textStatus, jqXHR) {
+                        console.log(data);
 
+                        snap.pay(data.snapToken,{
+                            onSuccess: function (result) {
+                                window.location.href = window.location.href="?check=true"
+                             },
+                            onPending: function(result){
+                                window.location.href = window.location.href="?check=true"
+                            },
+                            onError: function(result){
+                                window.location.href = window.location.href="?check=true"
+                            }
+                        })
+                    }
+                );
+            });
+        });
+    </script>
+@endsection
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -102,8 +130,9 @@
                     </table>
                     <div class="alert alert-secondary" role="alert">
                         <h5>Pembayaran Otomatis</h5>
-                        <p style="color: black">Pembayaran Otomatis menggunakan Pihak ketiga, anda akan dikenakan biaya tambahan sebesar Rp. 4.000,00</p>
-                        
+                        <p style="color: black">Pembayaran Otomatis menggunakan Pihak ketiga, anda akan dikenakan biaya tambahan sebesar Rp. 2.000,00</p>
+                        <p>Status Pembayaran : <b>{{ getStatusPembayaran($statusPembayaran) }}</b></p>
+                        <button class="btn btn-primary" id="pay-button">Bayar Sekarang</button>
                     </div>
                     <div class="alert alert-secondary" role="alert" style="color:black">
                         Pembayaran Bisa DI lakukan Dengan Cara Langsung Ke Operator Sekolah Atau Di transfer Melalui Rekening Milik Sekolah Dibawah Ini. <br>

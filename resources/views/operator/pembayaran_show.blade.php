@@ -132,7 +132,7 @@
                                 <tr>
                                     <td>Bukti Pembayaran</td>
                                     @if($model->metode_pembayaran == 'manual')
-                                    <td>: METODE PEMBAYARAN MANUAL TANPA BUKTI BAYAR</td>
+                                    <td>: METODE PEMBAYARAN MANUAL / VIRTUAL ACCOUNT TANPA BUKTI BAYAR</td>
                                     @else
                                     <td>:
                                         <a href="javascript:void[0]"

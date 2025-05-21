@@ -23,7 +23,18 @@ function getNamaKelas()
 function bulanSpp()
 {
     return [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
     ];
 }
 function formatRupiah($nominal, $prefix = null)
@@ -80,5 +91,12 @@ function terbilang($x)
     } elseif ($x < 1000000000) {
         return terbilang($x / 1000000) . " juta" . terbilang($x % 1000000);
     }
+}
 
+function getStatusPembayaran($status)
+{
+    if ($status == 'settlement') {
+        return 'Sudah Lunas';
+    }
+    return $status;
 }

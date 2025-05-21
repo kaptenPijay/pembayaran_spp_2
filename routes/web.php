@@ -22,6 +22,7 @@ use App\Http\Controllers\LaporanTagihanController;
 use App\Http\Controllers\PanduanPembayaranController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PembayaranMidtransController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\StatusController;
@@ -112,6 +113,7 @@ Route::prefix('walimurid')->middleware(['auth', 'auth.wali'])->name('wali.')->gr
     Route::get('beranda', [BerandaWaliController::class, 'index'])->name('beranda');
     Route::resource('siswa', WaliMuridSiswaController::class);
     Route::resource('tagihan', WaliMuridTagihanController::class);
+    Route::resource('pembayaranmidtrans', PembayaranMidtransController::class);
     Route::resource('pembayaran', WaliMuridPembayaranController::class);
     Route::resource('profil', WaliMuridProfilController::class);
 });
