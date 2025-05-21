@@ -20,6 +20,7 @@ use App\Http\Controllers\LaporanFormController;
 use App\Http\Controllers\LaporanPembayaranController;
 use App\Http\Controllers\LaporanTagihanController;
 use App\Http\Controllers\PanduanPembayaranController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiswaController;
@@ -120,6 +121,7 @@ Route::resource('invoice', InvoiceController::class)->middleware('auth');
 // Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
 //     //ini route khusus untuk admin
 // });
+Route::resource('payment', PaymentController::class);
 Route::get('logout', function () {
     Auth::logout();
     return redirect('login');
