@@ -7,9 +7,9 @@ function getClassName($classname)
 function getNamaJurusan()
 {
     return [
-        'Teknik Sepeda Motor' => 'Teknik Sepeda Motor',
-        'Teknik Kendaraan Ringan' => 'Teknik Kendaraan Ringan',
-        'Teknik Listrik' => 'Teknik Listrik'
+        'Farmasi' => 'Farmasi',
+        'Keperawatan' => 'Keperawatan',
+        'Teknik Laboratorium' => 'Teknik Laboratorium'
     ];
 }
 function getNamaKelas()

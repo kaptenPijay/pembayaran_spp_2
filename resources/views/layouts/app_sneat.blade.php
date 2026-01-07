@@ -28,7 +28,7 @@
     />
 
     <title>
-        {{ @$title != '' ? "$title |": '' }}
+        {{ @$title != '' ? "$title |" : '' }}
         {{ settings()->get('app_name', 'My APP') }}
     </title>
 
@@ -90,30 +90,37 @@
     }
     </style>
     <script>
-    //melihat bukti bayar
-    const popupCenter = ({url, title, w, h}) => {
-    // Fixes dual-screen position                             Most browsers      Firefox
-    const dualScreenLeft = window.screenLeft !==  undefined ? window.screenLeft : window.screenX;
-    const dualScreenTop = window.screenTop !==  undefined   ? window.screenTop  : window.screenY;
+        //melihat bukti bayar
+        const popupCenter = ({
+            url,
+            title,
+            w,
+            h
+        }) => {
+            // Fixes dual-screen position                             Most browsers      Firefox
+            const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
+            const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
 
-    const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-    const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+            const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document
+                .documentElement.clientWidth : screen.width;
+            const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document
+                .documentElement.clientHeight : screen.height;
 
-    const systemZoom = width / window.screen.availWidth;
-    const left = (width - w) / 2 / systemZoom + dualScreenLeft
-    const top = (height - h) / 2 / systemZoom + dualScreenTop
-    const newWindow = window.open(url, title,
-      `
+            const systemZoom = width / window.screen.availWidth;
+            const left = (width - w) / 2 / systemZoom + dualScreenLeft
+            const top = (height - h) / 2 / systemZoom + dualScreenTop
+            const newWindow = window.open(url, title,
+                `
       scrollbars=yes,
       width=${w / systemZoom},
       height=${h / systemZoom},
       top=${top},
       left=${left}
       `
-    )
+            )
 
-    if (window.focus) newWindow.focus();
-}
+            if (window.focus) newWindow.focus();
+        }
     </script>
   </head>
 
@@ -144,77 +151,77 @@
 
           <ul class="menu-inner py-1" style="background-color: #4A45B8">
             <!-- Dashboard -->
-            <li class="menu-item {{ Route::is('operator.beranda')? 'active' : '' }}">
+            <li class="menu-item {{ Route::is('operator.beranda') ? 'active' : '' }}">
               <a href="{{ route('operator.beranda') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons bx bx-home-circle text-white"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Beranda</div>
               </a>
             </li>
 
             <!-- Cards -->
             @can('operator')
-            <li class="menu-item {{ Route::is('setting.*')? 'active' : '' }}">
-              <a href="{{ route('setting.create') }}" class="menu-link text-white">
-                <i class="menu-icon tf-icons bx bx-cog"></i>
-                <div data-i18n="Basic">Pengaturan Aplikasi</div>
-              </a>
-            </li>
-            <li class="menu-item {{ Route::is('user.*')? 'active' : '' }}">
-              <a href="{{ route('user.index') }}" class="menu-link text-white">
-                <i class="menu-icon tf-icons fa-solid fa-user-secret"></i>
-                <div data-i18n="Basic">Data user</div>
-              </a>
-            </li>
-            <li class="menu-item {{ Route::is('banksekolah.*')? 'active' : '' }}">
-              <a href="{{ route('banksekolah.index') }}" class="menu-link text-white">
-                <i class="menu-icon tf-icons fa fa-building-columns"></i>
-                <div data-i18n="Basic">Data Rekening Sekolah</div>
-              </a>
-            </li>
-            @endcan
-            <li class="menu-item {{ Route::is('wali.*')? 'active' : '' }}">
+    <li class="menu-item {{ Route::is('setting.*') ? 'active' : '' }}">
+                          <a href="{{ route('setting.create') }}" class="menu-link text-white">
+                            <i class="menu-icon tf-icons bx bx-cog"></i>
+                            <div data-i18n="Basic">Pengaturan Aplikasi</div>
+                          </a>
+                        </li>
+                        <li class="menu-item {{ Route::is('user.*') ? 'active' : '' }}">
+                          <a href="{{ route('user.index') }}" class="menu-link text-white">
+                            <i class="menu-icon tf-icons fa-solid fa-user-secret"></i>
+                            <div data-i18n="Basic">Data Pengguna</div>
+                          </a>
+                        </li>
+                        <li class="menu-item {{ Route::is('banksekolah.*') ? 'active' : '' }}">
+                          <a href="{{ route('banksekolah.index') }}" class="menu-link text-white">
+                            <i class="menu-icon tf-icons fa fa-building-columns"></i>
+                            <div data-i18n="Basic">Data Rekening Sekolah</div>
+                          </a>
+                        </li>
+@endcan
+            <li class="menu-item {{ Route::is('wali.*') ? 'active' : '' }}">
               <a href="{{ route('wali.index') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons fa fa-users"></i>
                 <div data-i18n="Basic">Data Wali Murid</div>
               </a>
             </li>
-            <li class="menu-item {{ Route::is('siswa.*')? 'active' : '' }}">
+            <li class="menu-item {{ Route::is('siswa.*') ? 'active' : '' }}">
               <a href="{{ route('siswa.index') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons bx bxs-graduation"></i>
                 <div data-i18n="Basic">Data Siswa</div>
               </a>
             </li>
             @can('operator')
-            <li class="menu-item {{ Route::is('biaya.*')? 'active' : '' }}">
-              <a href="{{ route('biaya.index') }}" class="menu-link text-white">
-                <i class="menu-icon tf-icons bx bx-money"></i>
-                <div data-i18n="Basic">Data Biaya</div>
-              </a>
-            </li>
-            <li class="menu-item {{ Route::is('jobstatus.*')? 'active' : '' }}">
-              <a href="{{ route('jobstatus.index') }}" class="menu-link text-white">
-                <i class="menu-icon tf-icons fa-solid fa-plus"></i>
-                <div data-i18n="Basic">Buat Tagihan</div>
-              </a>
-            </li>
+    <li class="menu-item {{ Route::is('biaya.*') ? 'active' : '' }}">
+                          <a href="{{ route('biaya.index') }}" class="menu-link text-white">
+                            <i class="menu-icon tf-icons bx bx-money"></i>
+                            <div data-i18n="Basic">Data Biaya</div>
+                          </a>
+                        </li>
+                        <li class="menu-item {{ Route::is('jobstatus.*') ? 'active' : '' }}">
+                          <a href="{{ route('jobstatus.index') }}" class="menu-link text-white">
+                            <i class="menu-icon tf-icons fa-solid fa-plus"></i>
+                            <div data-i18n="Basic">Buat Tagihan</div>
+                          </a>
+                        </li>
 
-            <li class="menu-item {{ Route::is('tagihan.*')? 'active' : '' }}">
-              <a href="{{ route('tagihan.index') }}" class="menu-link text-white">
-                <i class="menu-icon tf-icons fa-solid fa-money-bills"></i>
-                <div data-i18n="Basic">Data Tagihan</div>
-              </a>
-            </li>
-            <li class="menu-item {{ Route::is('pembayaran.*')? 'active' : '' }}">
-              <a href="{{ route('pembayaran.index') }}" class="menu-link text-white">
-                <i class="menu-icon tf-icons fa-solid fa-money-check-dollar"></i>
-                <div data-i18n="Basic">
-                    Data Pembayaran
-                    <span class="badge badge-center rounded-pill bg-danger">{{ auth()->user()->unreadNotifications->count()}}</span>
-                </div>
-              </a>
-            </li>
-            @endcan
-            <li class="menu-item {{ Route::is('laporanform.*') || Route::is('laporantagihan.*')? 'active' : '' }}">
+                        <li class="menu-item {{ Route::is('tagihan.*') ? 'active' : '' }}">
+                          <a href="{{ route('tagihan.index') }}" class="menu-link text-white">
+                            <i class="menu-icon tf-icons fa-solid fa-money-bills"></i>
+                            <div data-i18n="Basic">Data Tagihan</div>
+                          </a>
+                        </li>
+                        <li class="menu-item {{ Route::is('pembayaran.*') ? 'active' : '' }}">
+                          <a href="{{ route('pembayaran.index') }}" class="menu-link text-white">
+                            <i class="menu-icon tf-icons fa-solid fa-money-check-dollar"></i>
+                            <div data-i18n="Basic">
+                                Data Pembayaran
+                                <span class="badge badge-center rounded-pill bg-danger">{{ auth()->user()->unreadNotifications->count() }}</span>
+                            </div>
+                          </a>
+                        </li>
+@endcan
+            <li class="menu-item {{ Route::is('laporanform.*') || Route::is('laporantagihan.*') ? 'active' : '' }}">
               <a href="{{ route('laporanform.create') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons fa-solid fa-circle-info"></i>
                 <div data-i18n="Basic">
@@ -225,7 +232,7 @@
             <li class="menu-item">
               <a href="{{ route('logout') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons fa-solid fa-power-off"></i>
-                <div data-i18n="Basic">Logout</div>
+                <div data-i18n="Basic">Keluar</div>
               </a>
             </li>
             {{-- boxicons --}}
@@ -249,7 +256,7 @@
             </div>
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                 <!-- Search -->
-                    <div class="d-flex justify-content-start">{{ settings()->get('app_name','My App') }}</div>
+                    <div class="d-flex justify-content-start">{{ settings()->get('app_name', 'My App') }}</div>
                   {{-- {!! Form::open(['route' => 'tagihan.index', 'method'=>'GET']) !!} --}}
                 {{-- <div class="nav-item d-flex align-items-center">
                   <button type="submit" class="btn btn-link"><i class="bx bx-search fs-4 lh-0"></i></button>
@@ -271,7 +278,7 @@
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                       <i class="bx bx-bell bx-sm"></i>
                       <span class="badge bg-danger rounded-pill badge-notifications">
-                        {{ auth()->user()->unreadNotifications->count()}}
+                        {{ auth()->user()->unreadNotifications->count() }}
                       </span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end py-0">
@@ -288,8 +295,8 @@
                       <li class="dropdown-notifications-list scrollable-container ps">
                         <ul class="list-group list-group-flush">
                             @foreach (auth()->user()->unreadNotifications as $notification)
-                          <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                            <a href="{{ url($notification->data['url'].'?id='. $notification->id ) }}">
+<li class="list-group-item list-group-item-action dropdown-notifications-item">
+                            <a href="{{ url($notification->data['url'] . '?id=' . $notification->id) }}">
                             <div class="d-flex">
                               <div class="flex-grow-1">
                                 <h6 class="mb-1">{{ $notification->data['title'] }}</h6>
@@ -303,7 +310,7 @@
                             </div>
                             </a>
                           </li>
-                          @endforeach
+@endforeach
                         </ul>
                       <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></li>
                       <li class="dropdown-menu-footer border-top">
@@ -351,7 +358,7 @@
                     <li>
                       <a class="dropdown-item" href="{{ route('logout') }}">
                         <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+                        <span class="align-middle">Keluar</span>
                       </a>
                     </li>
                   </ul>
@@ -371,10 +378,10 @@
                 <div class="alert alert-success d-none" role="alert" id="alert-message">
                 </div>
                 @if ($errors->any())
-                    <div class="alert alert-danger" role="alert">
+<div class="alert alert-danger" role="alert">
                         {!! implode('', $errors->all('<div>:message</div>')) !!}
                     </div>
-                @endif
+@endif
                 @yield('content')
             </div>
             <!-- / Content -->
@@ -420,7 +427,9 @@
     <script src="{{ asset('font/js/jquery.mask.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('.rupiah').mask("#.##0", {reverse: true});
+            $('.rupiah').mask("#.##0", {
+                reverse: true
+            });
             $('.select2').select2();
         });
     </script>

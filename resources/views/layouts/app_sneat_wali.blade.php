@@ -28,7 +28,7 @@
     />
 
     <title>
-        {{ @$title != '' ? "$title |": '' }}
+        {{ @$title != '' ? "$title |" : '' }}
         {{ settings()->get('app_name', 'My APP') }}
     </title>
 
@@ -98,30 +98,37 @@
         }
     </style>
     <script>
-        const popupCenter = ({url, title, w, h}) => {
-        // Fixes dual-screen position                             Most browsers      Firefox
-        const dualScreenLeft = window.screenLeft !==  undefined ? window.screenLeft : window.screenX;
-        const dualScreenTop = window.screenTop !==  undefined   ? window.screenTop  : window.screenY;
+        const popupCenter = ({
+            url,
+            title,
+            w,
+            h
+        }) => {
+            // Fixes dual-screen position                             Most browsers      Firefox
+            const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
+            const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
 
-        const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-        const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+            const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document
+                .documentElement.clientWidth : screen.width;
+            const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document
+                .documentElement.clientHeight : screen.height;
 
-        const systemZoom = width / window.screen.availWidth;
-        const left = (width - w) / 2 / systemZoom + dualScreenLeft
-        const top = (height - h) / 2 / systemZoom + dualScreenTop
-        const newWindow = window.open(url, title,
-          `
+            const systemZoom = width / window.screen.availWidth;
+            const left = (width - w) / 2 / systemZoom + dualScreenLeft
+            const top = (height - h) / 2 / systemZoom + dualScreenTop
+            const newWindow = window.open(url, title,
+                `
           scrollbars=yes,
           width=${w / systemZoom},
           height=${h / systemZoom},
           top=${top},
           left=${left}
           `
-        )
+            )
 
-        if (window.focus) newWindow.focus();
-    }
-        </script>
+            if (window.focus) newWindow.focus();
+        }
+    </script>
   </head>
 
   <body>
@@ -193,27 +200,27 @@
 
           <ul class="menu-inner py-1" style="background-color: #4A45B8">
             <!-- Dashboard -->
-            <li class="menu-item {{ Route::is('wali.beranda')? 'active' : '' }}">
+            <li class="menu-item {{ Route::is('wali.beranda') ? 'active' : '' }}">
               <a href="{{ route('wali.beranda') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Beranda</div>
               </a>
             </li>
 
             <!-- Cards -->
-            <li class="menu-item {{ Route::is('wali.siswa.*')? 'active' : '' }}">
+            <li class="menu-item {{ Route::is('wali.siswa.*') ? 'active' : '' }}">
               <a href="{{ route('wali.siswa.index') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons fa-solid fa-children"></i>
                 <div data-i18n="Basic">Data Siswa</div>
               </a>
             </li>
-            <li class="menu-item {{ Route::is('wali.tagihan.*') || Route::is('wali.pembayaran.*')? 'active' : '' }}">
+            <li class="menu-item {{ Route::is('wali.tagihan.*') || Route::is('wali.pembayaran.*') ? 'active' : '' }}">
               <a href="{{ route('wali.tagihan.index') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons fa-solid fa-money-bills"></i>
                 <div data-i18n="Basic">Data Tagihan</div>
               </a>
             </li>
-            <li class="menu-item {{ Route::is('wali.profil.*')?'active' : '' }}">
+            <li class="menu-item {{ Route::is('wali.profil.*') ? 'active' : '' }}">
               <a href="{{ route('wali.profil.create') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons fa-regular fa-pen-to-square"></i>
                 <div data-i18n="Basic">Ubah Profil</div>
@@ -229,7 +236,7 @@
             <li class="menu-item">
               <a href="{{ route('logout') }}" class="menu-link text-white">
                 <i class="menu-icon tf-icons fa-solid fa-power-off"></i>
-                <div data-i18n="Basic">Logout</div>
+                <div data-i18n="Basic">Keluar</div>
               </a>
             </li>
             {{-- boxicons --}}
@@ -254,7 +261,7 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <!-- Search -->
-              <div class="d-flex justify-content-start">{{ settings()->get('app_name','My App') }}</div>
+              <div class="d-flex justify-content-start">{{ settings()->get('app_name', 'My App') }}</div>
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
@@ -262,7 +269,7 @@
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                       <i class="bx bx-bell bx-sm"></i>
                       <span class="badge bg-danger rounded-pill badge-notifications">
-                        {{ auth()->user()->unreadNotifications->count()}}
+                        {{ auth()->user()->unreadNotifications->count() }}
                       </span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end py-0">
@@ -279,7 +286,7 @@
                       <li class="dropdown-notifications-list scrollable-container ps">
                         <ul class="list-group list-group-flush">
                             @foreach (auth()->user()->unreadNotifications as $notification)
-                          <li class="list-group-item list-group-item-action dropdown-notifications-item">
+<li class="list-group-item list-group-item-action dropdown-notifications-item">
                             <div class="d-flex">
                               <div class="flex-grow-1">
                                 <h6 class="mb-1">{{ $notification->data['title'] }}</h6>
@@ -292,7 +299,7 @@
                               </div>
                             </div>
                           </li>
-                          @endforeach
+@endforeach
                         </ul>
                       <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></li>
                       <li class="dropdown-menu-footer border-top">
@@ -305,7 +312,7 @@
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <div class="avatar {{ auth()->user()->unreadNotifications->count() >=1 ?'avatar-online' : '' }}">
+                    <div class="avatar {{ auth()->user()->unreadNotifications->count() >= 1 ? 'avatar-online' : '' }}">
                       <img src="{{ Storage::url('images/avatar-wali.png') }}" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
@@ -366,10 +373,10 @@
 
             <div class="container-xxl flex-grow-1 container-p-y">
                 @if ($errors->any())
-                    <div class="alert alert-danger" role="alert">
+<div class="alert alert-danger" role="alert">
                         {!! implode('', $errors->all('<div>:message</div>')) !!}
                     </div>
-                @endif
+@endif
                 @yield('content')
             </div>
             <!-- / Content -->
@@ -413,7 +420,9 @@
     <script src="{{ asset('font/js/jquery.mask.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('.rupiah').mask("#.##0", {reverse: true});
+            $('.rupiah').mask("#.##0", {
+                reverse: true
+            });
             $('.select2').select2();
         });
     </script>
