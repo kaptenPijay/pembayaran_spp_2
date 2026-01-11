@@ -77,7 +77,7 @@
                             </table>
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <h5>SMK BATANGHARI</h5>
+                            <h5>{{ settings()->get('app_name', 'My App') }}</h5>
                             <table class="">
                                 <tr>
                                     <td>No. Tagihan</td>
